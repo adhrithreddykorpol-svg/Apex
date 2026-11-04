@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apex – MotoGP bikes, teams and riders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--surface:#fff;--ink:#14151c;--mute:#5a6074;--line:#e0e4ef;--tyre:#16181e;--rim:#cdd1da;--red:#e10600;--orange:#ff6a13;--blue:#1f4fd8;--purple:#7b3fe4;--gold:#f0b000;--lime:#9be000;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0f16;--surface:#171a25;--ink:#f1f3fa;--mute:#a1a7bb;--line:#2a2f40;--tyre:#04050a;--rim:#8b91a4}}
+:root[data-theme="dark"]{--bg:#0d0f16;--surface:#171a25;--ink:#f1f3fa;--mute:#a1a7bb;--line:#2a2f40;--tyre:#04050a;--rim:#8b91a4}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif}
+h1,h2,h3{font-family:Syne,Manrope,system-ui,sans-serif;font-weight:800;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font:800 22px Syne,sans-serif;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:14px;height:14px;border-radius:50%;background:conic-gradient(var(--red),var(--orange),var(--gold),var(--lime),var(--blue),var(--purple),var(--red))}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:500;font-size:15px}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
+.hero{padding:64px 0 24px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center}
+.hero h1{font-size:clamp(40px,6.4vw,78px);letter-spacing:-.03em}
+.hero p{color:var(--mute);max-width:40ch;margin:20px 0 28px;font-size:19px}
+.btn{display:inline-block;background:var(--orange);color:#14151c;padding:14px 26px;border-radius:12px;font-weight:700;text-decoration:none}
+.stage{position:relative;padding:20px 0}
+.stage .sun{position:absolute;inset:4% 8% 10% 12%;border-radius:50%;background:conic-gradient(from 200deg,var(--orange),var(--gold),var(--lime),var(--blue),var(--purple),var(--orange));filter:saturate(1.1)}
+.stage .sun::after{content:"";position:absolute;inset:8%;border-radius:50%;background:var(--bg)}
+.stage svg{position:relative;width:100%;height:auto;transform:rotate(-7deg);animation:lean 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes lean{from{transform:translateX(22%) rotate(0);opacity:0}to{transform:rotate(-7deg);opacity:1}}
+@media (prefers-reduced-motion:reduce){.stage svg{animation:none}html{scroll-behavior:auto}}
+section{padding:72px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.02em}
+.head p{color:var(--mute);max-width:46ch;margin:0}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:24px;overflow:hidden}
+.facts div{padding:32px 28px 36px;background:var(--c);color:#14151c}
+.facts h3{font-size:22px;margin-bottom:12px}
+.facts p{margin:0;font-weight:500}
+.mk{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:170px 1fr auto;align-items:center;gap:24px;background:var(--surface);border-radius:20px;padding:14px 28px 14px 18px;border:1px solid var(--line);border-left:12px solid var(--c)}
+.row svg{width:100%;height:auto;color:var(--c)}
+.row h3{font-size:21px}
+.row p{margin:4px 0 0;color:var(--mute);font-size:15px}
+.row span{font-weight:700;font-size:14px;color:var(--c);filter:brightness(.85)}
+.riders{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rd{background:var(--c);border-radius:24px;padding:20px 20px 22px;color:#14151c;min-height:230px;display:flex;flex-direction:column;justify-content:space-between}
+.rd b{font:800 64px/1 Syne,sans-serif;letter-spacing:-.04em}
+.rd h3{font-size:19px}
+.rd p{margin:6px 0 0;font-weight:500;font-size:15px}
+.wk{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.wk div{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px}
+.wk h3{font-size:20px;margin-bottom:8px;color:var(--c);filter:brightness(.9)}
+.wk p{margin:0;color:var(--mute)}
+footer{padding:40px 0 56px;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:900px){.riders{grid-template-columns:1fr 1fr}.hero .wrap{grid-template-columns:1fr}.facts,.wk{grid-template-columns:1fr}.row{grid-template-columns:120px 1fr}.row span{display:none}}
+@media (max-width:560px){.riders{grid-template-columns:1fr 1fr;gap:12px}.rd b{font-size:46px}.rd{min-height:190px}nav li:first-child{display:none}nav ul{gap:16px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="bike" viewBox="0 0 600 300">
+<ellipse cx="305" cy="262" rx="265" ry="8" fill="#000" opacity=".15"/>
+<path d="M130 158 L220 124 L232 150 L146 186Z" fill="currentColor"/>
+<path d="M148 200 L255 178" stroke="var(--tyre)" stroke-width="9" stroke-linecap="round"/>
+<path d="M410 128 L470 206" stroke="var(--tyre)" stroke-width="9" stroke-linecap="round"/>
+<path d="M200 152 C240 110 330 98 392 120 L500 172 L446 186 L330 164 L222 190Z" fill="currentColor"/>
+<path d="M392 120 L432 104 L440 126Z" fill="#fff" opacity=".4"/>
+<path d="M232 112 L336 98 L358 110 L324 130 L244 140Z" fill="var(--tyre)"/>
+<path d="M340 112 L408 128" stroke="var(--tyre)" stroke-width="8" stroke-linecap="round"/>
+<path d="M256 136 L286 178 L262 206" fill="none" stroke="var(--tyre)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="360" cy="86" r="18" fill="#ffd23f"/>
+<path d="M350 84 h26 v10 h-26z" fill="var(--tyre)" opacity=".75"/>
+<g><circle cx="140" cy="206" r="56" fill="var(--tyre)"/><circle cx="140" cy="206" r="32" fill="none" stroke="var(--rim)" stroke-width="8"/><circle cx="140" cy="206" r="7" fill="var(--rim)"/></g>
+<g><circle cx="472" cy="206" r="56" fill="var(--tyre)"/><circle cx="472" cy="206" r="32" fill="none" stroke="var(--rim)" stroke-width="8"/><circle cx="472" cy="206" r="7" fill="var(--rim)"/></g>
+</symbol>
+</svg>
+
+<nav><div class="wrap"><a class="logo" href="#top"><i></i>Apex</a>
+<ul><li><a href="#bikes">Bikes</a></li><li><a href="#makers">Makers</a></li><li><a href="#riders">Riders</a></li></ul></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+<div><h1>MotoGP, leaned all the way over.</h1>
+<p>The fastest motorcycles on Earth, the factories that build them and the riders who take them to the edge.</p>
+<a class="btn" href="#bikes">See how they work</a></div>
+<div class="stage"><div class="sun"></div>
+<svg viewBox="0 0 600 300" role="img" aria-label="Illustration of a MotoGP bike leaning into a corner" style="color:var(--orange)"><use href="#bike"/></svg></div>
+</div></header>
+
+<section id="bikes"><div class="wrap">
+<div class="head"><h2>What makes them so fast</h2><p>A MotoGP bike weighs about as much as a large dog and makes more power than most sports cars.</p></div>
+<div class="facts">
+<div style="--c:var(--gold)"><h3>Huge power</h3><p>Engines of around 1,000cc push these bikes past 350 km/h on the longest straights.</p></div>
+<div style="--c:var(--lime)"><h3>Extreme lean</h3><p>Riders drag their knees and elbows through corners at lean angles beyond 60 degrees.</p></div>
+<div style="--c:var(--orange)"><h3>Wings and aero</h3><p>Winglets on the fairing press the front wheel down under acceleration and keep the bike stable.</p></div>
+</div></div></section>
+
+<section id="makers"><div class="wrap">
+<div class="head"><h2>The factories</h2><p>Unlike most racing, the manufacturers themselves compete, so the bikes are built by the same brands you can buy from.</p></div>
+<div class="mk">
+<article class="row" style="--c:#e10600"><svg viewBox="0 0 600 300" aria-hidden="true"><use href="#bike"/></svg><div><h3>Ducati</h3><p>Borgo Panigale, Italy</p></div><span>V4 engine</span></article>
+<article class="row" style="--c:#7b3fe4"><svg viewBox="0 0 600 300" aria-hidden="true"><use href="#bike"/></svg><div><h3>Aprilia</h3><p>Noale, Italy</p></div><span>V4 engine</span></article>
+<article class="row" style="--c:#ff6a13"><svg viewBox="0 0 600 300" aria-hidden="true"><use href="#bike"/></svg><div><h3>KTM</h3><p>Mattighofen, Austria</p></div><span>V4 engine</span></article>
+<article class="row" style="--c:#1f4fd8"><svg viewBox="0 0 600 300" aria-hidden="true"><use href="#bike"/></svg><div><h3>Yamaha</h3><p>Iwata, Japan</p></div><span>Inline-four engine</span></article>
+<article class="row" style="--c:#f0b000"><svg viewBox="0 0 600 300" aria-hidden="true"><use href="#bike"/></svg><div><h3>Honda</h3><p>Tokyo, Japan</p></div><span>V4 engine</span></article>
+</div></div></section>
+
+<section id="riders"><div class="wrap">
+<div class="head"><h2>The riders</h2><p>Eight names to watch, each wearing the colours of their factory.</p></div>
+<div class="riders">
+<div class="rd" style="--c:#e10600"><b>MM</b><div><h3>Marc Márquez</h3><p>Ducati · Spain</p></div></div>
+<div class="rd" style="--c:#ff7a70"><b>PB</b><div><h3>Pecco Bagnaia</h3><p>Ducati · Italy</p></div></div>
+<div class="rd" style="--c:#a97bff"><b>JM</b><div><h3>Jorge Martín</h3><p>Aprilia · Spain</p></div></div>
+<div class="rd" style="--c:#c9a8ff"><b>MB</b><div><h3>Marco Bezzecchi</h3><p>Aprilia · Italy</p></div></div>
+<div class="rd" style="--c:#ff6a13"><b>PA</b><div><h3>Pedro Acosta</h3><p>KTM · Spain</p></div></div>
+<div class="rd" style="--c:#5b8cff"><b>FQ</b><div><h3>Fabio Quartararo</h3><p>Yamaha · France</p></div></div>
+<div class="rd" style="--c:#9be000"><b>AM</b><div><h3>Álex Márquez</h3><p>Gresini Ducati · Spain</p></div></div>
+<div class="rd" style="--c:#f0b000"><b>JM</b><div><h3>Joan Mir</h3><p>Honda · Spain</p></div></div>
+</div></div></section>
+
+<section><div class="wrap">
+<div class="head"><h2>A race weekend</h2><p>Every Grand Prix follows the same three days.</p></div>
+<div class="wk">
+<div style="--c:#1f4fd8"><h3>Friday</h3><p>Practice sessions let riders and engineers find the right setup for the track.</p></div>
+<div style="--c:#7b3fe4"><h3>Saturday</h3><p>Qualifying sets the grid, then a short sprint race awards half points.</p></div>
+<div style="--c:#e10600"><h3>Sunday</h3><p>The full-distance Grand Prix decides the main points and the podium.</p></div>
+</div></div></section>
+
+<footer><div class="wrap">Apex is an unofficial fan page. Illustrations are original vector art.</div></footer>
+</body>
+</html>
